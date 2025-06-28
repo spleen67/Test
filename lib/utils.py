@@ -16,7 +16,20 @@ def nettoyer_colonnes(df):
 @st.cache_data
 def charger_depuis_google_sheets(url):
     """Charge un fichier Excel depuis une URL Google Sheets."""
-    return pd.read_excel(url)
+    try:
+        # On spécifie le moteur pour plus de robustesse
+        df = pd.read_excel(url, engine='openpyxl')
+        if df.empty:
+            raise ValueError("Le fichier Excel est vide.")
+        return df
+    except Exception as e:
+        # Si quoi que ce soit échoue (URL, format de fichier...), on lève une erreur claire.
+        raise ConnectionError(
+            f"ERREUR DE LECTURE DU FICHIER EXCEL.\n"
+            f"Impossible de charger ou de lire les données depuis l'URL fournie.\n"
+            f"Vérifiez que cette URL est correcte et qu'elle pointe bien vers un fichier .xlsx valide : {url}\n"
+            f"Erreur technique originale : {e}"
+        )
 
 @st.cache_data
 def get_disponibilites():
