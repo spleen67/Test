@@ -3,7 +3,7 @@
 import streamlit as st
 import pandas as pd
 import unicodedata
-from constants import SHEETS_CONFIG
+from .constants import SHEETS_CONFIG
 
 def nettoyer_colonnes(df):
     """Normalise les noms de colonnes d'un DataFrame."""
