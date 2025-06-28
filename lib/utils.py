@@ -39,5 +39,21 @@ def get_rencontres():
     """Charge et prépare les données des rencontres."""
     df = charger_depuis_google_sheets(SHEETS_CONFIG["rencontres"])
     df = nettoyer_colonnes(df)
+    
+    # Vérifier la présence des colonnes essentielles attendues par l'application
+    required_cols = ['DATE', 'COMPETITION NOM', 'EQUIPE DOMICILE', 'EQUIPE VISITEUR', 'RENCONTRE NUMERO']
+    missing_cols = [col for col in required_cols if col not in df.columns]
+    
+    if missing_cols:
+        # Si une colonne manque, on lève une erreur très explicite.
+        # Cela arrêtera l'application et affichera ce message sur Streamlit Cloud.
+        raise ValueError(
+            f"COLONNE MANQUANTE: Une ou plusieurs colonnes sont introuvables dans votre Google Sheet 'rencontres'.\n"
+            f"Colonnes manquantes (après normalisation): {', '.join(missing_cols)}\n"
+            f"Colonnes trouvées (après normalisation): {', '.join(df.columns)}"
+        )
+
+    # Si tout va bien, on continue le traitement
     df['DATE'] = pd.to_datetime(df['DATE'], errors='coerce').dt.date
     return df
+
