@@ -14,7 +14,7 @@ df_arbitres_raw = get_arbitres()
 
 # Préparation des données pour l'affichage et la fusion
 # On garde uniquement les colonnes utiles des arbitres pour la fusion
-df_arbitres = df_arbitres_raw[['NUMERO AFFILIATION', 'CATEGORIE', 'CODE CLUB']].copy()
+df_arbitres = df_arbitres_raw[['NUMERO AFFILIATION', 'CATEGORIE_x', 'CODE CLUB']].copy()
 
 # On transforme la disponibilité en icônes pour l'affichage
 df_dispo = df_dispo_raw.copy()
@@ -29,7 +29,7 @@ else:
 
 # Vérification des colonnes nécessaires
 # Note: 'CATEGORIE_y' devient 'CATEGORIE' car on a évité la collision de colonnes
-colonnes_requises = ['NOM', 'PRENOM', 'CATEGORIE', 'CODE CLUB', 'DATE', 'DISPONIBILITE']
+colonnes_requises = ['NOM', 'PRENOM', 'CATEGORIE_x', 'CODE CLUB', 'DATE', 'DISPONIBILITE']
 colonnes_manquantes = [col for col in colonnes_requises if col not in df.columns]
 
 if colonnes_manquantes:
@@ -39,7 +39,7 @@ if colonnes_manquantes:
 
 # Création du tableau pivoté
 pivot = df.pivot_table(
-    index=['NOM', 'PRENOM', 'CATEGORIE', 'CODE CLUB'],
+    index=['NOM', 'PRENOM', 'CATEGORIE_x', 'CODE CLUB'],
     columns='DATE',
     values='DISPONIBILITE',
     aggfunc='first',
