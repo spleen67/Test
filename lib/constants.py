@@ -3,7 +3,7 @@
 SHEETS_CONFIG = {
     "disponibilites": "https://docs.google.com/spreadsheets/d/113KAFUl9E4ceFqm-gIfQ-zhigYGnOGPh/export?format=xlsx",
     "arbitres": "https://docs.google.com/spreadsheets/d/1UUZBFPMCkVGzVKeTP_D44ZpGwTHlu0Q0/export?format=xlsx",
-    "rencontres": "URL_DE_VOTRE_FEUILLE_RENCONTRES"  # À compléter
+    "rencontres": "https://docs.google.com/spreadsheets/d/1cM3QiYhiu22sKSgYKvpahvNWJqlxSk-e/export?format=xlsx"  # À compléter
 }
 
 # Niveaux de compétition (exemple)
