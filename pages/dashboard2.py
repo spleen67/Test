@@ -14,7 +14,7 @@ df_arbitres_raw = get_arbitres()
 
 # Préparation des données pour l'affichage et la fusion
 # On garde uniquement les colonnes utiles des arbitres pour la fusion
-df_arbitres = df_arbitres_raw[['NUMERO AFFILIATION', 'CATEGORIE_x', 'CODE CLUB']].copy()
+df_arbitres = df_arbitres_raw[['NUMERO AFFILIATION', 'CATEGORIE', 'CODE CLUB']].copy()
 
 # On transforme la disponibilité en icônes pour l'affichage
 df_dispo = df_dispo_raw.copy()
